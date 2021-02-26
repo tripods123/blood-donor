@@ -1,10 +1,8 @@
 <resources>
-    <string name="app_name">Find The Donor</string>
-    <string name="register">REGISTER</string>
-    <string name="login_email_hint">Email</string>
-    <string name="login_password_hint">Password</string>
-    <string name="signup_login_hint">Already have an account? Sign In</string>
-    <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+    <string name="app_name">Blood Donation App</string>
+    <string name="facebook_app_id">730838364139507</string>
+    <string name="fb_login_protocol_scheme">fb730838364139507</string>
+
 
     <string name="open">Open Navigation Drawer</string>
     <string name="close">Close Navigation Drawer</string>
