@@ -16,8 +16,8 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:name=".WelcomeActivity"
+            android:theme="@style/WelcomeScreenTheme">
             <intent-filter>
 
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +27,10 @@
         </activity>
 
 
+
+       <activity
+           android:name=".MainActivity"
+           android:theme="@style/AppTheme"/>
 
         <activity
             android:name=".RegisterActivity"
