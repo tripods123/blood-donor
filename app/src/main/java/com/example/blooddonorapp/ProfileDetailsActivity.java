@@ -3,13 +3,19 @@ package com.example.blooddonorapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -18,58 +24,47 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileDetailsActivity extends AppCompatActivity {
+public class ProfileDetailsActivity extends Fragment {
     TextView textView_name=null, textView_mobile=null, textView_email=null, textView_city=null, textView_area=null, textView_birthdate=null, textView_bloodgrp=null, textView_gender=null;
     CircleImageView imageView;
     RelativeLayout relativeLayout;
     DatabaseReference databaseReference;
+
     String url = null;
     Utilsclass utilsclass = new Utilsclass();
     Bitmap bitmap;
 
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_details);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.activity_req,container,false);
+        LinearLayout ll=view.findViewById(R.id.parenter);
+        relativeLayout = view.findViewById(R.id.layout_content);
+        View view1 = ll.getRootView();
 
-        ChekConn();
+        imageView = view1.findViewById(R.id.image_profile);
 
+        textView_name = view1.findViewById(R.id.nameTextView);
+        textView_mobile = view1.findViewById(R.id.mobileTextView);
+        textView_email = view1.findViewById(R.id.emailTextView);
+        textView_city = view1.findViewById(R.id.cityTextView);
+        textView_area = view1.findViewById(R.id.areaTextView);
+        textView_birthdate = view1.findViewById(R.id.bdayTextView);
+        textView_bloodgrp = view1.findViewById(R.id.bloodTextView);
+        textView_gender = view1.findViewById(R.id.genderTextView);
+        return view;
+    }
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         databaseReference = FirebaseDatabase.getInstance().getReference("Donner Profile Details");
-        databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-
-        Toolbar toolbar = findViewById(R.id.toolbar_LPD);
-        setSupportActionBar(toolbar);
-
-        toolbar.setNavigationIcon(R.drawable.ic_back);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProfileDetailsActivity.this, MainActivity.class));
-                finish();
-            }
-        });
-
-        relativeLayout = findViewById(R.id.layout_content);
-        View view = relativeLayout.getRootView();
-
-        imageView = view.findViewById(R.id.image_profile);
-
-        textView_name = view.findViewById(R.id.nameTextView);
-        textView_mobile = view.findViewById(R.id.mobileTextView);
-        textView_email = view.findViewById(R.id.emailTextView);
-        textView_city = view.findViewById(R.id.cityTextView);
-        textView_area = view.findViewById(R.id.areaTextView);
-        textView_birthdate = view.findViewById(R.id.bdayTextView);
-        textView_bloodgrp = view.findViewById(R.id.bloodTextView);
-        textView_gender = view.findViewById(R.id.genderTextView);
+        databaseReference.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
 
         showProfileDetails();
-
     }
-
     public void showProfileDetails() {
 
         try {
@@ -130,19 +125,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
             }
 
         } catch (Exception e1) {
-            Toast.makeText(ProfileDetailsActivity.this, e1.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_LONG).show();
         }
-    }
-
-    private void ChekConn() {
-        if (utilsclass.checkConnection(getApplicationContext()) == null) {
-            startActivity(new Intent(ProfileDetailsActivity.this, MainActivity.class));
-            Toast.makeText(this, "Could Not Load The Page. Check Your Internet Connection", Toast.LENGTH_LONG).show();
-            finish();
-        }
-    }
-
-
-    public void onBackPressed() {
     }
 }

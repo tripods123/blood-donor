@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     AlertDialog.Builder alertDialog;
 
+    Fragment fragment=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +46,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_profile:
-                startActivity(new Intent(this, ProfileDetailsActivity.class));
-                finish();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileDetailsActivity()).commit();
+                drawerLayout.closeDrawer(GravityCompat.START);
+                Toast.makeText(getApplicationContext(), "Mkae a Request", Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.nav_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                finish();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsActivity()).commit();
+                drawerLayout.closeDrawer(GravityCompat.START);
+                Toast.makeText(getApplicationContext(), "Mkae a Request", Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.nav_logout:
@@ -58,8 +62,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_makeReq:
-                startActivity(new Intent(this, MakeNewRequest.class));
-                finish();
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MakeNewRequest()).commit();
+                drawerLayout.closeDrawer(GravityCompat.START);
+                Toast.makeText(getApplicationContext(), "Mkae a Request", Toast.LENGTH_LONG).show();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

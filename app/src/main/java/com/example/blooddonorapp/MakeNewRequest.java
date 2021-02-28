@@ -4,14 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +28,7 @@ import java.util.HashMap;
 import static com.example.blooddonorapp.R.id.hosp_s;
 import static com.example.blooddonorapp.R.id.standard;
 
-public class MakeNewRequest extends AppCompatActivity {
+public class MakeNewRequest extends Fragment {
     Spinner sp_state,sp_city,sp_hosp;
     Context context;
     ArrayList<String> state_array,city_array,hospital_array;
@@ -32,38 +36,35 @@ public class MakeNewRequest extends AppCompatActivity {
     ArrayAdapter<String> city_adapter;
     ArrayAdapter<String> hosp_adapter;
     ArrayList<HashMap<String, String>> datalist,citydatalist,hospitaldatalist;
+    final httphandler states=new httphandler();
     private String TAG = MainActivity.class.getSimpleName();
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_req);
-        Toolbar toolbar = findViewById(R.id.toolbar_MakeNewReq);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MakeNewRequest.this, MainActivity.class));
-                finish();
-            }
-        });
-        context=getApplicationContext();
-        datalist=new ArrayList<HashMap<String, String>>();
-        citydatalist=new ArrayList<HashMap<String, String>>();
-        hospitaldatalist=new ArrayList<HashMap<String, String>>();
-        sp_state = findViewById(R.id.state_s);
-        sp_city = findViewById(R.id.city_s);
-        sp_hosp = findViewById(hosp_s);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        //super.onCreate(savedInstanceState);
+        View view=inflater.inflate(R.layout.activity_req,container,false);
+        Toolbar toolbar = view.findViewById(R.id.toolbar_MakeNewReq);
+        context = getActivity();
+        datalist = new ArrayList<HashMap<String, String>>();
+        citydatalist = new ArrayList<HashMap<String, String>>();
+        hospitaldatalist = new ArrayList<HashMap<String, String>>();
+        sp_state = view.findViewById(R.id.state_s);
+        sp_city = view.findViewById(R.id.city_s);
+        sp_hosp = view.findViewById(hosp_s);
         state_array = new ArrayList<>();
         city_array = new ArrayList<>();
-        hospital_array= new ArrayList<>();
-        final httphandler states=new httphandler();
+        hospital_array = new ArrayList<>();
+        return view;
+    }
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         String jsonStr = states.getstates("https://blood-donor.herokuapp.com/objects/getstates.php");
         if (jsonStr != null) {
             try {
                 JSONObject jsonObj = new JSONObject(jsonStr);
                 // Getting JSON Array node
-                JSONArray data = jsonObj.getJSONArray("news");
+                JSONArray data = jsonObj.getJSONArray("");
                 // looping through All Contacts
                 for (int i = 0; i < data.length(); i++) {
                     JSONObject c = data.getJSONObject(i);
@@ -83,7 +84,7 @@ public class MakeNewRequest extends AppCompatActivity {
             Log.e(TAG, "Couldn't get json from server.");
             Toast.makeText(context, "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
         }
-        state_adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, state_array);
+        state_adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, state_array);
         sp_state.setAdapter(state_adapter);
         sp_state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -177,12 +178,4 @@ public class MakeNewRequest extends AppCompatActivity {
         });
 
     }
-
-
-
-    @Override
-    public void onBackPressed() {
-
-    }
-
 }

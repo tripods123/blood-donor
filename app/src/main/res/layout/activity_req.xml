@@ -66,22 +66,15 @@
                 <Spinner
                     android:id="@+id/state_s"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:prompt="State"/>
-
-            <Spinner
-                android:id="@+id/city_s"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:prompt="City">
-            </Spinner>
-
-            <Spinner
-                android:id="@+id/hosp_s"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:prompt="Hospital">
-            </Spinner>
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:id="@+id/city_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:id="@+id/hosp_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </com.google.android.material.textfield.TextInputLayout>
         <Button
