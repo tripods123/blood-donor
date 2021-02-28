@@ -25,44 +25,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme" />
 
        <activity
            android:name=".MainActivity"
            android:theme="@style/AppTheme"/>
 
-        <activity
-            android:name=".RegisterActivity"
-            android:theme="@style/AppTheme" />
 
-        <activity
-            android:name=".ProfileDetailsActivity"
-            android:theme="@style/AppThemeProfile" />
 
         <activity
             android:name=".ImageUpdateActivity"
             android:theme="@style/AppTheme" />
 
-        <activity
-            android:name=".LoginActivity"
-            android:theme="@style/AppTheme" />
+
 
         <activity
             android:name=".ImageUploadActivity"
             android:theme="@style/AppTheme" />
 
-
-        <activity
-            android:name=".SettingsActivity"
-            android:theme="@style/AppTheme"/>
-
         <activity
             android:name=".ForgetPasswordActivity"
             android:theme="@style/AppTheme"/>
 
-        <activity
-            android:name=".MakeNewRequest"
-            android:theme="@style/AppTheme"/>
+
     </application>
 </manifest>

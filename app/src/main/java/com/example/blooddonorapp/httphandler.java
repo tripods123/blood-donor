@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,12 +17,22 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class httphandler {
     private static final String TAG = httphandler.class.getSimpleName();
+    public static final MediaType JSON
+            = MediaType.get("application/json; charset=utf-8");
+    String json;
+    RequestBody body;
 
     public httphandler() {
     }
-    public String getstates(String reqUrl) {
+    public String getstates(String reqUrl)  {
         String response = null;
         try {
             URL url = new URL(reqUrl);
@@ -38,7 +50,9 @@ public class httphandler {
         } catch (Exception e) {
             Log.e(TAG, "Exception: " + e.getMessage());
         }
+
         return response;
+
     }
     public String getcity(String reqUrl, String requestBody) {
         String response = null;
