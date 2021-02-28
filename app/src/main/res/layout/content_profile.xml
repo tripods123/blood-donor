@@ -82,7 +82,7 @@
                 android:layout_alignParentLeft="true"/>
 
             <TextView
-                android:text="City"
+                android:text="City and State"
                 android:layout_toRightOf="@id/countryImageView"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"

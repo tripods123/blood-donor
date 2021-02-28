@@ -81,7 +81,7 @@ public class ProfileDetailsActivity extends Fragment {
                         if(dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Name").getValue().toString()!=null
                         && dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Email Address").getValue().toString()!=null
                         && dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Contact Number").getValue().toString()!=null
-                        && dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("City").getValue().toString()!=null
+                        && dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("City and State").getValue().toString()!=null
                         && dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Area And Pin Code").getValue().toString()!=null
                         && dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Birth Date").getValue().toString()!=null
                         && dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Blood Group").getValue().toString()!=null
@@ -93,7 +93,7 @@ public class ProfileDetailsActivity extends Fragment {
                             textView_name.setText(dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Name").getValue().toString());
                             textView_email.setText(dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Email Address").getValue().toString());
                             textView_mobile.setText(dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Contact Number").getValue().toString());
-                            textView_city.setText(dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("City").getValue().toString());
+                            textView_city.setText(dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("City and State").getValue().toString());
                             textView_area.setText(dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Area And Pin Code").getValue().toString());
                             textView_birthdate.setText(dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Birth Date").getValue().toString());
                             textView_bloodgrp.setText(dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Blood Group").getValue().toString());
