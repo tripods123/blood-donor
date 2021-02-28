@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:background="@color/whiteTextColor"
     android:orientation="vertical"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:popupTheme="@style/Theme.AppCompat.Light"
-            app:title="Setup Your Profile"
+            app:title="Register Your Profile"
             app:titleTextColor="@color/whiteTextColor" />
 
 
@@ -43,15 +43,14 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/countryCodePicker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8.9dp"
-                    app:ccp_defaultNameCode="US"
-                    app:ccp_showFlag="true"
-                    android:background="@drawable/country_code_back">
-                </com.hbb20.CountryCodePicker>
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCodePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8.9dp"
+                android:background="@drawable/country_code_back"
+                app:ccp_defaultNameCode="US"
+                app:ccp_showFlag="true"></com.hbb20.CountryCodePicker>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_contactno"
@@ -84,6 +83,20 @@
                     android:hint="Email"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <Spinner
+                    android:id="@+id/spinner_State"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/States"
+                    android:backgroundTint="@color/colorPrimary"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"/>
+            </LinearLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -128,18 +141,68 @@
                     android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <Spinner
+                    android:id="@+id/spinner_bloodGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/Blood_Groups"
+                    android:backgroundTint="@color/colorPrimary"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"/>
+            </LinearLayout>
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_input_bloodGroup"
+                android:id="@+id/txt_input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                app:boxStrokeColor="@color/blackTextColor"
+                app:boxStrokeWidth="2dp"
+                app:passwordToggleEnabled="true"
                 app:errorEnabled="true">
 
                 <EditText
+                    android:id="@+id/edt_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Blood Group (Like O+)"
-                    android:inputType="textCapCharacters" />
+                    android:hint="Create Password"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Password should contain at least one digit, one special character (!@#$%*+_) and an upper case letter"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17dp"
+                    android:textStyle="normal"></TextView>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_confirmPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:boxStrokeColor="@color/blackTextColor"
+                app:boxStrokeWidth="2dp"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:id="@+id/edt_confirmPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -180,7 +243,8 @@
                         android:layout_marginLeft="25dp"
                         android:layout_marginRight="20dp"
                         android:text="Female"
-                        android:textSize="15dp"></RadioButton>
+                        android:textSize="15dp">
+                    </RadioButton>
                 </RadioGroup>
             </LinearLayout>
 
@@ -193,7 +257,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="15dp"
                 android:background="@color/colorPrimary"
-                android:text="Save Profile"
+                android:text="Register"
                 android:textColor="@color/whiteTextColor"
                 android:textStyle="bold" />
         </LinearLayout>

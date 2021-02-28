@@ -112,7 +112,7 @@ public class ImageUploadActivity extends AppCompatActivity {
                                                         alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialogInterface, int i) {
-                                                                startActivity(new Intent(ImageUploadActivity.this, MainActivity.class));
+                                                                startActivity(new Intent(ImageUploadActivity.this, LoginActivity.class));
                                                                 finish();
                                                             }
                                                         });

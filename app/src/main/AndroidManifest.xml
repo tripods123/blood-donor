@@ -49,10 +49,6 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".EmailAndPasswordActivity"
-            android:theme="@style/AppTheme" />
-
-        <activity
             android:name=".ImageUploadActivity"
             android:theme="@style/AppTheme" />
 
